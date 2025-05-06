@@ -80,3 +80,20 @@ Route::get('/para/{data?}', function ($data) {
 Route::get('/para/{data?}', function ($data = 'hello') {
     return $data;
 });
+
+//middleware
+Route::view('/home', 'home')->middleware([ageCheck::class]);
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::get("set", [SessionController::class, "set"]);
+Route::get("get", [SessionController::class, "get"]);
+Route::get("delete", [SessionController::class, "delete"]);
+Route::get("flush", [SessionController::class, "flush"]);
+
+
+Route::get("local", function () {
+    return view('local');
+});
